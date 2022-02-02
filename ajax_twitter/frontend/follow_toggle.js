@@ -1,10 +1,10 @@
 class FollowToggle{
-    constructor() {
-        let $el = $('.follow-toggle');
+    constructor(el) {
+        this.$el = $(el);
         this.userId = $el[data-user-id];
         this.followState = $el[initial-data-state];
         this.render();
-        this.handleClick();
+        this.$el.on("click", this.handleClick.bind(this))
     }
     render(){
         if(this.followState === 'unfollowed'){
@@ -17,16 +17,26 @@ class FollowToggle{
     handleClick(e){
         e.preventDefault;
         if(this.followState === 'unfollowed'){
-            return $.ajax({
-                method: 'POST',
-                url: `/users/${this.userId}/follow`    
-        })} else {
-            return $.ajax({
-                method: 'DELETE',
-                url: `/users/${this.userId}`
-            })
+            followToggleUtil.followAJAX(this.userId).then(success, failure); 
+        } else {
+            followToggleUtil.unfollowAJAX(this.userId).then(success, failure);
         }
-    }.then
+        this.render
+    }
+
+    success(){
+        if (this.followState === 'unfollowed') {
+            this.followState = 'followed'
+        }else{
+            this.followState = 'unfollowed'
+        }
+    }
+
+    failure(errors){
+        $messages.text(errors.responseJSON[0]);
+        setTimeout(()=> $messages.empty(), 5000)
+    }
+
 };
 
 module.exports = FollowToggle;
