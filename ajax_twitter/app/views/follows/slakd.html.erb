@@ -1,0 +1,12 @@
+<form action="<%= user_follow_url(user) %>" method="post">
+
+<input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+<input type="button" 
+    class="follow-toggle" 
+    data-user-id="<%= user.id %>" 
+    data-initial.data.state="<%= @current_user.follows?(user) %>">
+</form>

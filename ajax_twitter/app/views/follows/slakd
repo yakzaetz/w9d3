@@ -1,3 +1,0 @@
-<form action="<%= user_follow_url(user) %>" method="post">
-<input type="button" class="follow-toggle" data-user-id="<%= user.id %>"   value="">
-</form>
