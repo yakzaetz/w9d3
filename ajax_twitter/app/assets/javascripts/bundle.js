@@ -5,29 +5,9 @@
 /*!***********************************!*\
   !*** ./frontend/follow_toggle.js ***!
   \***********************************/
-/***/ ((module) => {
+/***/ (() => {
 
-class FollowToggle{
-    constructor() {
-        let $el = $('.follow-toggle');
-        this.userId = $el[data-user-id];
-        this.followState = $el[initial-data-state];
-        this.render();
-    }
-    render(){
-        if(this.followState === 'unfollowed'){
-            return "Follow!";
-        }else{
-            return "Unfollow!";
-        };
-    };
-
-    handleClick(e){
-        e.preventDefault;
-    }
-};
-
-module.exports = FollowToggle;
+throw new Error("Module parse failed: Unexpected token (29:5)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|             })\n|         }\n>     }.then\n| };\n| ");
 
 /***/ })
 
