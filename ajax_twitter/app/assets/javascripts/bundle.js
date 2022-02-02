@@ -9,35 +9,48 @@
 
 class FollowToggle{
     constructor(el) {
+        debugger
         this.$el = $(el);
-        this.userId = $el[data-user-id];
-        this.followState = $el[initial-data-state];
+        this.userId = this.$el.data("user-id")
+        this.followState = this.$el.data("initial-data-state");
         this.render();
         this.$el.on("click", this.handleClick.bind(this))
+        debugger
     }
     render(){
         if(this.followState === 'unfollowed'){
+            this.$el.prop("disabled", false);
             return "Follow!";
+        } else if (this.followState === 'unfollowing'){
+            this.$el.prop("disabled", true);
+        } else if (this.followState === 'following'){
+            this.$el.prop("disabled", true);
         }else{
+            this.$el.prop("disabled", false);
             return "Unfollow!";
-        };
+        }
     };
 
     handleClick(e){
         e.preventDefault;
         if(this.followState === 'unfollowed'){
+            this.followState = "following"
+            this.render();
             followToggleUtil.followAJAX(this.userId).then(success, failure); 
         } else {
+            this.followState = "unfollowing"
+            this.render();
             followToggleUtil.unfollowAJAX(this.userId).then(success, failure);
         }
-        this.render
     }
 
     success(){
         if (this.followState === 'unfollowed') {
             this.followState = 'followed'
+            this.render();
         }else{
             this.followState = 'unfollowed'
+            this.render();
         }
     }
 
@@ -86,8 +99,11 @@ var __webpack_exports__ = {};
   !*** ./frontend/twitter.js ***!
   \*****************************/
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js")
+debugger
 $(function(){
-    return new FollowToggle();
+    debugger
+    const el = $(".follow-toggle")
+    return new FollowToggle(el);
 })
 })();
 

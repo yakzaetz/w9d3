@@ -1,4 +1,7 @@
 const FollowToggle = require("./follow_toggle.js")
+debugger
 $(function(){
-    return new FollowToggle();
+    debugger
+    const el = $(".follow-toggle")
+    return new FollowToggle(el);
 })
