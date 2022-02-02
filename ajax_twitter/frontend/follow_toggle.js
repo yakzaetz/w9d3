@@ -1,5 +1,9 @@
 class FollowToggle{
     constructor() {
-       this.userId
+        let $el = $('.follow-toggle')
+        this.userId = $el[data-user-id]
+        this.initialState = $el[initial-data-state]
     }
 }
+
+module.exports = FollowToggle;
